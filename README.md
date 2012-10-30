@@ -1,6 +1,8 @@
 # ModelProbe
 
-TODO: Write a gem description
+## Schema introspection for ActiveModel
+
+Provides a detailed view of the underlying schema that backs an ActiveModel
 
 ## Installation
 
@@ -18,7 +20,11 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+```ruby
+MyModel.extend ModelProbe
+MyModel.probe
+MyModel.fixture
+```
 
 ## Contributing
 
