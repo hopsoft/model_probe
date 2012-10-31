@@ -1,0 +1,55 @@
+All image items are inside the "img" folder.
+
+> code.png
+> folders.png
+Author: me
+License: (for both images only)
+Creative Commons Attribution-ShareAlike 3.0 Unported License.
+
+
+> ipad.png
+iPad images
+Author: Will-Yen
+Link:	http://will-yen.deviantart.com/art/iPad-WP-Preview-Template-161187272
+License:
+No license mentioned
+
+> shot.png
+Author: Pixeden.com
+Link:	http://www.pixeden.com/psd-mock-up-templates/iphone-4s-psd-vector-mockup-template
+License:	
+All our resources* are royalty free for use in both personal and commercial projects.
+You can modify any resources to your liking to fit into your project, we are however not legally liable for any misuse of our resources.
+We do not ask for you to include any attribution or link back to Pixeden.com, we do however appreciate if you do credit our resources or/and help spread the word about us.
+
+You cannot however redistribute, resell, lease, license, sub-license or offer our resources to any third party. This includes uploading our resources to another websites or media-sharing tool, and offering our resources as a separate attachment from any of your work. If you do plan to include one of our resource on an item or template that will be sold on a website or marketplace, we ask of you to contact us to determine the proper use of our resource before doing so.
+
+Premium files downloaded with a premium account can be used in a item or website template sold through a marketplace or directly on a website with no attribution required. You cannot however resell or redistribute those premium files as is. Please contact us before using those files in this way to ensure that you abide by our license.
+
+If you would like to share one of our resource you can do so making a link to the specific resource page on Pixeden.com, you can if you wish insert the embed code for the related video or/and the product previews images to illustrate your link.
+
+> bg.png
+Author: SubtlePatterns  
+Link:	www.subtlepatterns.com
+License:
+Creative Commons Attribution-ShareAlike 3.0 Unported License.
+<div xmlns:cc="http://creativecommons.org/ns#" xmlns:dct="http://purl.org/dc/terms/" about="http://subtlepatterns.com/about/"><span property="dct:title">Subtle Patterns</span> (<a rel="cc:attributionURL" property="cc:attributionName" href="http://subtlepatterns.com">Subtle Patterns</a>) / <a rel="license" href="http://creativecommons.org/licenses/by-sa/3.0/">CC BY-SA 3.0</a></div>
+
+Icons used in:
+> googleplay.png
+> heartwork.png
+> airplanes in ipad.png and shot.png
+> twitter-icon.png
+> facebook-icon.pong
+> googleplus-icon.png
+> responsive.png
+> all the airplane icons
+Author: SyncFusion MetroStudio 2 
+Link:	http://www.syncfusion.com/downloads/metrostudio_beta
+License: 
+Use of Licensed Program(s) and Limitation of Liability:  You are solely responsible for all use of the Licensed Programs, and Syncfusion assumes no liability whatsoever for Your use.  Syncfusion provides no indemnity of any kind for any claims that may arise from Your use of the Licensed Programs.  The Licensed Programs may be used to manipulate fonts to create custom icons; therefore, any such use may violate Your licensed rights in or to certain fonts that You may have licensed from a third party.  Therefore, any such use may create liabilities for You for which You will remain solely liable.  Your use of the Licensed Programs in such a manner shall be deemed your acceptance of all such liabilities; accordingly, you agree to indemnify and hold harmless Syncfusion from any claims that may arise from such use.  The Licensed Program(s) are tools that are not intended to replace the professional skills and judgment of Customer and its employees, agents and consultants.  Customer alone shall be responsible for the accuracy and adequacy of information and data furnished for processing and any use made by Customer of the output of the Licensed Program or any reliance thereon by Customer or users of Customer products.  Customer shall also be responsible for the continued operation and maintenance of the computer equipment and the third-party software used with the Licensed Program.  For these reasons, Customer agrees to be solely responsible for the design, repair and configuration of Customer’s equipment, machinery, systems and/or products.  Customer assumes all risks and liability for results obtained by the use of and/or implementation of the designs developed by Customer that are in any way influenced by the use of the Licensed Program(s) or the provision of services, whether such designs are used singly or in combination with other designs or products.  Customer shall protect, indemnify, hold harmless and defend Syncfusion of and from any loss, cost, damage or expense, including attorneys’ fees, arising from any claim asserted against Syncfusion that is in any way associated with the matters set forth in this Section 8.
+
+> twitter.png
+Twitter (https://twitter.com/logo)
+
+This policy is designed to help you use our brand and assets, including our logo, content and trademarks without having to worry about negotiating a separate agreement with us or talking to our lawyers.

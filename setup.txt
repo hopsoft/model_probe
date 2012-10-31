@@ -1,0 +1,6 @@
+How to set-up and run the example
+1. Open any web browser
+2. Drag and drop index.html inside that web browser
+
+Note: If the images are not loading, double check their filepaths if the syntaxes are correct/incorrect
+
