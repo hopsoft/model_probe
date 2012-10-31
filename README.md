@@ -2,7 +2,7 @@
 
 ## Schema introspection for ActiveModel
 
-Provides a detailed view of the underlying schema that backs an ActiveModel
+Provides a detailed view of the underlying schema that backs an ActiveModel.
 
 ## Installation
 
