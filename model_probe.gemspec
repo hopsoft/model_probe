@@ -10,7 +10,7 @@ Gem::Specification.new do |gem|
   gem.email         = ["natehop@gmail.com"]
   gem.description   = "Provides a detailed view of the underlying schema that backs an ActiveModel."
   gem.summary       = "Schema introspection for ActiveModel."
-  gem.homepage      = ""
+  gem.homepage      = "https://github.com/hopsoft/model_probe"
 
   gem.files         = `git ls-files`.split($/)
   # gem.executables   = gem.files.grep(%r{^bin/}).map{ |f| File.basename(f) }
