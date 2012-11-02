@@ -1,6 +1,6 @@
 body {
     padding: 30px 0 0;
-    border-top: 3px solid #D84A38;
+    border-top: 3px solid #a61802;
     background:#efefef;
 	background-image: url("../img/bg.png");
 }
@@ -105,8 +105,29 @@ h4 {
     margin-left: 15px;
 }
 
-.navbar .nav li a,
-.footer-box a {
+.footer-section {
+    border-top: solid 3px #496a78;
+    margin-top: -20px;
+    background-color: #799eae;
+}
+.footer-section * {
+    color: #000;
+    opacity: 0.85;
+    text-shadow: none;
+}
+.footer-section ul {
+    text-align: left;
+}
+.footer-section a {
+    opacity: 1;
+    color: #000;
+    text-decoration: underline;
+    font-weight: normal;
+}
+.footer-section a:hover {
+    color: #fff !important;
+}
+.navbar .nav li a {
 	font: 600 16px/26px 'Open Sans', sans-serif;
     padding: 6px 18px;
     color: #888888;
@@ -115,8 +136,7 @@ h4 {
     text-align: center;
 }
 
-.navbar .nav .active a,
-.footer-box .active a {
+.navbar .nav .active a {
     color:#3799ca;
     text-shadow:none;
     text-shadow:0 1px 0 #ffffff;
@@ -125,14 +145,12 @@ h4 {
 	box-shadow: none;
 }
 
-.navbar .nav li a:hover,
-.footer-box a:hover {
+.navbar .nav li a:hover {
     color:#3799ca;
     text-shadow:0 1px 0 #ffffff;
 }
 
-.navbar .nav .active a:hover,
-.footer-box .active a:hover {
+.navbar .nav .active a:hover {
     color:#4fb6e9;
     text-shadow:none;
 	background-color:transparent;
@@ -195,7 +213,7 @@ h4 {
 .section-box h3 {
     font-family: 'Open Sans', sans-serif;
     font-weight:600;
-    font-size: 24px;
+    font-size: 20px;
     margin-bottom:15px;
 	text-align: center;
 }
@@ -392,5 +410,9 @@ pre.code-big, pre.code-big *{
 }
 .by-hopsoft {
     opacity: 0.3;
+}
+
+[class^="icon-"], [class*=" icon-"] {
+    background-image: none;
 }
 
