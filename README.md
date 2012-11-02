@@ -1,8 +1,10 @@
 # ModelProbe
 
-## Schema introspection for ActiveModel
+## Schema introspection for ActiveRecord
 
 Provides a detailed view of the underlying schema that backs an ActiveRecord model.
+
+*This functionality can be added to any object that implements [ActiveRecord's columns interface](http://rubydoc.info/docs/rails/ActiveRecord/ModelSchema/ClassMethods#columns-instance_method).*
 
 ## Installation
 
