@@ -12,7 +12,7 @@ module ModelProbe
 
     columns.sort{ |a, b| a.name <=> b.name }.map do |column|
       name = column.name
-      name = "* #{name}" if column.primary
+      name = "* #{name}" if column.name == primary_key
       print yellow(name.to_s.rjust(name_pad))
       print " "
       print blue(column.type.to_s.ljust(type_pad, "."))
