@@ -98,7 +98,7 @@ module ModelProbe
 
   def validation_column?(column)
     return false if column.name == primary_key
-    return true if column.null
+    return true unless column.null
     %i(text string).include?(column.type) && column.limit.to_i > 0
   end
 
