@@ -62,10 +62,18 @@ module ModelProbe
     puts "  # callbacks ................................................................."
     puts "  # scopes ...................................................................."
     puts "  # additional config (i.e. accepts_nested_attribute_for etc...) .............."
+    puts
     puts "  # class methods ............................................................."
+    puts "  class << self"
+    puts "  end"
+    puts
     puts "  # public instance methods ..................................................."
+    puts
     puts "  # protected instance methods ................................................"
+    puts "  protected"
+    puts
     puts "  # private instance methods .................................................."
+    puts "  private"
     puts "end"
   end
 
