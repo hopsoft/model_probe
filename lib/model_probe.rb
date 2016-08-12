@@ -53,9 +53,9 @@ module ModelProbe
     puts "  # validations ..............................................................."
     validation_columns.sort_by(&:name).each do |column|
       next if column.name == primary_key
-      puts "  validates :#{column.name} presence: :true" unless column.null
+      puts "  validates :#{column.name}, presence: :true" unless column.null
       if %i(text string).include?(column.type) && column.limit.to_i > 0
-        puts "  validates :#{column.name} length: { maximum: #{column.limit} }"
+        puts "  validates :#{column.name}, length: { maximum: #{column.limit} }"
       end
     end
     puts if validation_columns.size > 0
