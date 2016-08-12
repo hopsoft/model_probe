@@ -25,5 +25,6 @@ Or install it yourself as:
 ```ruby
 MyModel.extend ModelProbe
 MyModel.probe
-MyModel.fixture
+MyModel.print_fixture
+MyModel.print_model
 ```
