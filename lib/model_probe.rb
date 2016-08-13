@@ -12,7 +12,7 @@ module ModelProbe
 
     columns.sort{ |a, b| a.name <=> b.name }.map do |column|
       name = column.name
-      name = "* #{name}" if column.name == primary_key
+      name = "* #{name}" if primary_key_column?(column)
       print yellow(name.to_s.rjust(name_pad))
       print " "
       print blue(column.type.to_s.ljust(type_pad, "."))
@@ -26,14 +26,13 @@ module ModelProbe
 
   # Prints a stub that can be used for a test fixture
   def print_fixture
-    name = self.name.underscore
-    hash = { name => {} }
-
-    columns.sort{ |a, b| a.name <=> b.name }.map do |column|
-      next if column.name =~ /^(created_at|updated_at)$/
-      hash[name][column.name] = column.default || "value"
+    values = columns.sort_by(&:name).each_with_object({}) do |column, memo|
+      next if primary_key_column?(column)
+      next if timestamp_column?(column)
+      memo[column.name] = column.default || "value"
     end
 
+    hash = { self.name.underscore => values }
     puts hash.to_yaml
     nil
   end
@@ -46,13 +45,13 @@ module ModelProbe
     puts if relation_columns.size > 0
     puts "  # relationships ............................................................."
     relation_columns.sort_by(&:name).each do |column|
-      next if column.name == primary_key
+      next if primary_key_column?(column)
       puts "  belongs_to :#{column.name.sub(/_id\z/, "")}" if column.name =~ /_id\z/
     end
     puts if relation_columns.size > 0 || validation_columns.size > 0
     puts "  # validations ..............................................................."
     validation_columns.sort_by(&:name).each do |column|
-      next if column.name == primary_key
+      next if primary_key_column?(column)
       puts "  validates :#{column.name}, presence: :true" unless column.null
       if %i(text string).include?(column.type) && column.limit.to_i > 0
         puts "  validates :#{column.name}, length: { maximum: #{column.limit} }"
@@ -75,6 +74,7 @@ module ModelProbe
     puts "  # private instance methods .................................................."
     puts "  private"
     puts "end"
+    nil
   end
 
   private
@@ -91,6 +91,14 @@ module ModelProbe
     end
   end
 
+  def primary_key_column?(column)
+    column.name == primary_key
+  end
+
+  def timestamp_column?(column)
+    column.type == :datetime && column.name =~ /(created|updated|modified)/
+  end
+
   def relation_column?(column)
     return false if column.name == primary_key
     column.name.end_with?("_id")
@@ -101,5 +109,4 @@ module ModelProbe
     return true unless column.null
     %i(text string).include?(column.type) && column.limit.to_i > 0
   end
-
 end
