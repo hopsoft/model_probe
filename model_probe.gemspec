@@ -12,4 +12,6 @@ Gem::Specification.new do |gem|
   gem.homepage = "http://hopsoft.github.com/model_probe/"
 
   gem.files    = Dir["lib/**/*.rb", "[A-Z]*"]
+
+  gem.add_development_dependency "rake"
 end
