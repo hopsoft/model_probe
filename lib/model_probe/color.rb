@@ -3,6 +3,7 @@ module ModelProbe
     extend self
 
     colors = {
+      :gray    => "1;30",
       :red     => 31,
       :green   => 32,
       :yellow  => 33,

@@ -19,6 +19,7 @@ module ModelProbe
       print magenta(column.sql_type.to_s.ljust(sql_type_pad))
       column.null ? print(red("NULL")) : print("    ")
       print " [#{column.default}]" if column.default
+      print " #{gray column.comment}" if column.comment
       puts
     end
     nil
