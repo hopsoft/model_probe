@@ -28,3 +28,27 @@ MyModel.probe
 MyModel.print_fixture
 MyModel.print_model
 ```
+
+## Rails Integration
+
+Create `config/initializers/model_probe.rb`
+
+```ruby
+ActiveRecord::Base.extend ModelProbe if Rails.env.development?
+```
+
+## Rake Task
+
+Create `lib/tasks/model.rake`
+
+```ruby
+namespace :model do
+  desc <<~DESC
+    Print model. Usage: `rails model:probe[User]`
+  DESC
+  task :probe, [:klass] => :environment do |task, args|
+    klass = args.klass
+    puts klass.constantize.print_model
+  end
+end
+```
