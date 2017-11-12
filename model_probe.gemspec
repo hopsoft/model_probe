@@ -11,7 +11,7 @@ Gem::Specification.new do |gem|
   gem.summary  = "Schema introspection for ActiveModel"
   gem.homepage = "http://hopsoft.github.com/model_probe/"
 
-  gem.files    = Dir["lib/**/*.rb", "[A-Z]*"]
+  gem.files    = Dir["lib/**/*.rb", "lib/tasks/*.rake", "[A-Z]*"]
 
   gem.add_development_dependency "rake"
 end

@@ -1,16 +1,17 @@
 require "model_probe/version"
 require "model_probe/color"
+require "model_probe/railtie" if defined?(Rails)
 
 module ModelProbe
   include ModelProbe::Color
 
   # Pretty prints column meta data for an ActiveModel
   def probe
-    name_pad = columns.map{ |c| c.name.length }.max + 1
-    type_pad = columns.map{ |c| c.type.length }.max + 2
-    sql_type_pad = columns.map{ |c| c.sql_type.length }.max + 1
+    name_pad = columns.map { |c| c.name.length }.max + 1
+    type_pad = columns.map { |c| c.type.length }.max + 2
+    sql_type_pad = columns.map { |c| c.sql_type.length }.max + 1
 
-    columns.sort{ |a, b| a.name <=> b.name }.map do |column|
+    columns.sort { |a, b| a.name <=> b.name }.map do |column|
       name = column.name
       name = "* #{name}" if primary_key_column?(column)
       print yellow(name.to_s.rjust(name_pad))
@@ -80,34 +81,34 @@ module ModelProbe
 
   private
 
-  def relation_columns
-    @relation_columns ||= begin
-      columns.select { |column| relation_column? column }
+    def relation_columns
+      @relation_columns ||= begin
+        columns.select { |column| relation_column? column }
+      end
     end
-  end
 
-  def validation_columns
-    @validation_columns ||= begin
-      columns.select { |column| validation_column? column }
+    def validation_columns
+      @validation_columns ||= begin
+        columns.select { |column| validation_column? column }
+      end
     end
-  end
 
-  def primary_key_column?(column)
-    column.name == primary_key
-  end
+    def primary_key_column?(column)
+      column.name == primary_key
+    end
 
-  def timestamp_column?(column)
-    column.type == :datetime && column.name =~ /(created|updated|modified)/
-  end
+    def timestamp_column?(column)
+      column.type == :datetime && column.name =~ /(created|updated|modified)/
+    end
 
-  def relation_column?(column)
-    return false if column.name == primary_key
-    column.name.end_with?("_id")
-  end
+    def relation_column?(column)
+      return false if column.name == primary_key
+      column.name.end_with?("_id")
+    end
 
-  def validation_column?(column)
-    return false if column.name == primary_key
-    return true unless column.null
-    %i(text string).include?(column.type) && column.limit.to_i > 0
-  end
+    def validation_column?(column)
+      return false if column.name == primary_key
+      return true unless column.null
+      %i(text string).include?(column.type) && column.limit.to_i > 0
+    end
 end
