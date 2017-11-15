@@ -10,27 +10,19 @@ Provides a detailed view of the underlying schema that backs an ActiveRecord mod
 
 *This functionality can be added to any object that implements [ActiveRecord's columns interface](http://rubydoc.info/docs/rails/ActiveRecord/ModelSchema/ClassMethods#columns-instance_method).*
 
-## Installation
-
-Add this line to your application's Gemfile:
-
-    gem 'model_probe'
-
-And then execute:
-
-    $ bundle
-
-Or install it yourself as:
-
-    $ gem install model_probe
-
-## Usage
+## Quick Start
 
 ```ruby
-MyModel.extend ModelProbe
-MyModel.probe
-MyModel.print_fixture
-MyModel.print_model
+# Gemfile
+gem "model_probe"
+```
+
+```ruby
+# examples with an ActiveRecord User model
+User.extend ModelProbe
+User.probe
+User.print_fixture
+User.print_model
 ```
 
 ## Rails Integration
