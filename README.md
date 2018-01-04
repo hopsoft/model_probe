@@ -1,8 +1,6 @@
 # ModelProbe
 
-<a target='_blank' rel='nofollow' href='https://app.codesponsor.io/link/QMSjMHrtPhvfmCnk5Hbikhhr/hopsoft/model_probe'>
-  <img alt='Sponsor' width='888' height='68' src='https://app.codesponsor.io/embed/QMSjMHrtPhvfmCnk5Hbikhhr/hopsoft/model_probe.svg' />
-</a>
+
 
 ## Schema introspection for ActiveRecord
 
