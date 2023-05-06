@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 namespace :model_probe do
   desc <<~DESC
     Probe. Usage: `rails model:probe[User]`
