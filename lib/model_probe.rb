@@ -21,11 +21,7 @@ module ModelProbe
   # Prints a stub that can be used for a test fixture
   def print_fixture
     template = erb_template("model_probe/templates/fixture.yml.erb")
-    puts template.result_with_hash(
-      name: name,
-      fixture_columns: fixture_columns,
-      fixture_values_by_type: fixture_values_by_type
-    )
+    puts template.result_with_hash(name: name, fixture_columns: fixture_columns)
     nil
   end
 
@@ -114,23 +110,6 @@ module ModelProbe
     columns.sort_by(&:name).select do |column|
       !primary_key_column?(column) && !timestamp_column?(column)
     end
-  end
-
-  def fixture_values_by_type
-    {
-      integer: "0",
-      bigint: "0",
-      float: "0.0",
-      decimal: "0.0",
-      datetime: "<%= Time.current %>",
-      timestamp: "<%= Time.current %>",
-      time: "<%= Time.current %>",
-      date: "<%= Date.current %>",
-      boolean: "true",
-      string: "string",
-      text: "text",
-      uuid: "<%= SecureRandom.uuid %>"
-    }
   end
 
   def ddl
