@@ -57,6 +57,8 @@ _All this and more with ModelProbe!_
 
 ## Videos
 
+[![image](https://ik.imagekit.io/hopsoft/model_probe_intro_teQyqPYTMi.webp?updatedAt=1683471304402)](https://youtu.be/Q3IdyKateQE)
+
 ## Screenshots
 
 Introspect your ActiveRecord models to build a deep understanding of the underlying database structure.
