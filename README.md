@@ -1,130 +1,33 @@
 # ModelProbe
 
+## ActiveRecord schema visualization and model organization made easy
 
-
-## Schema introspection for ActiveRecord
-
-Provides a detailed view of the underlying schema that backs an ActiveRecord model.
-
-*This functionality can be added to any object that implements [ActiveRecord's columns interface](http://rubydoc.info/docs/rails/ActiveRecord/ModelSchema/ClassMethods#columns-instance_method).*
+Get a clear view of your ActiveRecord models' underlying schema with ModelProbe's schema introspection.
+Generate model class definitions with an organized, logical structure and create sensible text fixture stubs.
+All this and more with __ModelProbe__.
 
 ## Quick Start
 
-```ruby
-# Gemfile
-gem "model_probe"
-```
+1. Add the GEM to your project
 
-```ruby
-# examples with an ActiveRecord User model
-User.extend ModelProbe
-User.probe
-User.print_fixture
-User.print_model
-```
+    ```sh
+    bundle add model_probe
+    ```
 
-## Rails Integration
+1. Use in a Rails console
 
-ModelProbe auto initializes in the Rails development environment.
-This means your models are implicitly extended with this behavior when developing.
+   _ModelProbe auto initializes in the Rails development environment._
 
-It also ships with these convenient rake tasks.
+    ```ruby
+    # examples with a User model
+    User.probe
+    User.print_model
+    User.print_fixture
+    ```
+1. Use with Rails tasks
 
-```sh
-rails t -T model_probe
-
-# rails model_probe:print_fixture[klass]  # Print fixture
-# rails model_probe:print_model[klass]    # Print model
-# rails model_probe:probe[klass]          # Probe
-```
-
-```sh
-rails model_probe:probe[User]
-
-#   confirmation_sent_at datetime..timestamp without time zone NULL
-#     confirmation_token string....character varying           NULL
-#           confirmed_at datetime..timestamp without time zone NULL
-#             created_at datetime..timestamp without time zone
-#     current_sign_in_at datetime..timestamp without time zone NULL
-#     current_sign_in_ip inet......inet                        NULL
-#                  email string....character varying           NULL []
-#     encrypted_password string....character varying            []
-#        failed_attempts integer...integer                      [0]
-#                   * id uuid......uuid
-#        last_sign_in_at datetime..timestamp without time zone NULL
-#        last_sign_in_ip inet......inet                        NULL
-#              locked_at datetime..timestamp without time zone NULL
-#       payment_platform string....character varying           NULL
-#    payment_platform_id string....character varying           NULL
-#        phone_number_id uuid......uuid
-#    remember_created_at datetime..timestamp without time zone NULL
-# reset_password_sent_at datetime..timestamp without time zone NULL
-#   reset_password_token string....character varying           NULL
-#          sign_in_count integer...integer                      [0]
-#      unconfirmed_email string....character varying           NULL
-#           unlock_token string....character varying           NULL
-#             updated_at datetime..timestamp without time zone
-```
-
-```sh
-rails model_probe:print_fixture[User]
-
-# ---
-# user:
-#   confirmation_sent_at: value
-#   confirmation_token: value
-#   confirmed_at: value
-#   current_sign_in_at: value
-#   current_sign_in_ip: value
-#   email: ''
-#   encrypted_password: ''
-#   failed_attempts: '0'
-#   last_sign_in_at: value
-#   last_sign_in_ip: value
-#   locked_at: value
-#   payment_platform: value
-#   payment_platform_id: value
-#   phone_number_id: value
-#   reset_password_sent_at: value
-#   reset_password_token: value
-#   sign_in_count: '0'
-#   unconfirmed_email: value
-#   unlock_token: value
-```
-
-```sh
-rails model_probe:print_model[User]
-
-# class User < ApplicationRecord
-#   # extends ...................................................................
-#   # includes ..................................................................
-#
-#   # relationships .............................................................
-#   belongs_to :payment_platform
-#   belongs_to :phone_number
-#
-#   # validations ...............................................................
-#   validates :created_at, presence: true
-#   validates :encrypted_password, presence: true
-#   validates :failed_attempts, presence: true
-#   validates :phone_number_id, presence: true
-#   validates :sign_in_count, presence: true
-#   validates :updated_at, presence: true
-#
-#   # callbacks .................................................................
-#   # scopes ....................................................................
-#   # additional config (i.e. accepts_nested_attribute_for etc...) ..............
-#
-#   # class methods .............................................................
-#   class << self
-#   end
-#
-#   # public instance methods ...................................................
-#
-#   # protected instance methods ................................................
-#   protected
-#
-#   # private instance methods ..................................................
-#   private
-# end
-```
+    ```sh
+    bin/rails model_probe:probe[User]
+    bin/rails model_probe:print_model[User]
+    bin/rails model_probe:print_fixture[User]
+    ```

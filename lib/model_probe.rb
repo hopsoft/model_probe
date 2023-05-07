@@ -15,7 +15,7 @@ module ModelProbe
     probe_columns
     probe_indexes
     probe_footer
-    self
+    nil
   end
 
   # Prints a stub that can be used for a test fixture
@@ -26,7 +26,7 @@ module ModelProbe
       fixture_columns: fixture_columns,
       fixture_values_by_type: fixture_values_by_type
     )
-    self
+    nil
   end
 
   # Prints a new model definition based on the database schema
@@ -42,7 +42,7 @@ module ModelProbe
       limit_columns: limit_columns,
       validation_columns: validation_columns
     )
-    self
+    nil
   end
 
   private
