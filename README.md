@@ -39,7 +39,7 @@ _All this and more with ModelProbe!_
     User.print_model
     User.print_fixture
     ```
-1. Use with Rails tasks
+1. Use with Rails (Rake) tasks
 
     ```sh
     # examples for a User model
