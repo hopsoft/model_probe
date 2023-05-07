@@ -2,9 +2,10 @@
 
 ## ActiveRecord schema visualization and model organization made easy
 
-Get a clear view of your ActiveRecord models' underlying schema with ModelProbe's schema introspection.
-Generate model class definitions with an organized, logical structure and create sensible text fixture stubs.
-All this and more with __ModelProbe__.
+Get a clear picture of your model's underlying schema with our beautiful and informative schema introspection.
+Generate model class definitions with a well organized, logical structure.
+Also, create sensible text fixture stubs.
+_All this and more with ModelProbe._
 
 ## Quick Start
 
@@ -31,3 +32,7 @@ All this and more with __ModelProbe__.
     bin/rails model_probe:print_model[User]
     bin/rails model_probe:print_fixture[User]
     ```
+
+## Screenshots
+
+## Videos
