@@ -176,15 +176,15 @@ module ModelProbe
   def probe_column(column, name_pad:, type_pad:, sql_type_pad:)
     name = column.name
     if primary_key_column?(column)
-      print Color.magenta_light("*#{name}".rjust(name_pad))
+      print Color.pink("*#{name}".rjust(name_pad))
     else
       print Color.magenta(name.to_s.rjust(name_pad))
     end
     print " "
     print column.type.to_s.ljust(type_pad, ".")
     print Color.gray(column.sql_type.to_s.ljust(sql_type_pad))
-    print Color.red_light("NULLABLE ") if column.null
-    print Color.green_light("REQUIRED ") unless column.null
+    print Color.gray("NULLABLE ") if column.null
+    print Color.pink("REQUIRED ") unless column.null
     print Color.gray("default=#{column.default} ") if column.default
     print "- #{Color.gray column.comment}" if column.comment
     puts
