@@ -19,7 +19,7 @@ class <%= name -%> < <%= superclass_name %>
   # validations ..............................................................................................
 <% validation_columns.each do |column| -%>
   <%= "validates :#{column.name}, presence: true" unless column.null if required_columns.include?(column) %>
-  <%= "validates :#{column.name}, length: { maximum: #{column.limit} }" if limit_columns.include?(column) %>
+  <%= "validates :#{column.name}, length: {maximum: #{column.limit}}" if limit_columns.include?(column) %>
 <% end -%>
 
   # callbacks (caution: side effects) ........................................................................
