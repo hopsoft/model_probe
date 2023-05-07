@@ -34,7 +34,7 @@ _All this and more with ModelProbe!_
 1. Use in a Rails console
 
     ```ruby
-    # examples with a User model
+    # examples for a User model
     User.probe
     User.print_model
     User.print_fixture
@@ -42,6 +42,7 @@ _All this and more with ModelProbe!_
 1. Use with Rails tasks
 
     ```sh
+    # examples for a User model
     bin/rails model_probe:probe[User]
     bin/rails model_probe:print_model[User]
     bin/rails model_probe:print_fixture[User]
