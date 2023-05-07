@@ -4,18 +4,23 @@ module ModelProbe
   module Color
     extend self
 
-    colors = {
-      gray: "1;30",
-      red: 31,
-      green: 32,
-      yellow: 33,
+    COLORS = {
       blue: 34,
-      magenta: 35,
       cyan: 36,
-      white: 37
+      gray: "1;30",
+      green: 32,
+      green_light: 92,
+      magenta: 35,
+      magenta_light: 95,
+      pink: "1;91",
+      red: 31,
+      red_light: 91,
+      white: 37,
+      yellow: 33,
+      yellow_light: 93
     }
 
-    colors.each do |name, code|
+    COLORS.each do |name, code|
       define_method name do |text|
         "\e[#{code}m#{text}\e[0m"
       end

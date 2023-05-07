@@ -11,9 +11,9 @@ module ModelProbe
   # Pretty prints column meta data for an ActiveModel
   def probe
     probe_header
+    probe_ddl
     probe_columns
     probe_indexes
-    probe_ddl
     probe_footer
     self
   end
@@ -134,40 +134,39 @@ module ModelProbe
   end
 
   def ddl
+    config = connection_db_config.configuration_hash
     @ddl ||= begin
-      query = case connection.adapter_name
-      when /sqlite/i then "SELECT sql FROM sqlite_master WHERE type='table' AND name=#{quoted_table_name};"
-      when /postgresql/i then "SELECT ddl AS create_table_statement FROM pg_catalog.pg_tables WHERE tablename = #{quoted_table_name};"
-      when /mysql/i then "SHOW CREATE TABLE #{quoted_table_name};"
-      when /sqlserver/i
-        <<~SQL
-          SELECT definition AS create_table_statement FROM sys.objects o
-          JOIN sys.sql_modules m ON m.object_id = o.object_id
-          WHERE o.type = 'U' AND o.name = #{quoted_table_name};
-        SQL
-      else return "DDL output is not yet supported for #{connection.adapter_name}!"
-      end
-
-      ActiveRecord::Base.logger.silence do
-        connection.execute(query).first[1]
+      case connection.adapter_name
+      when /sqlite/i
+        `sqlite3 #{config[:database]} '.schema #{table_name}'`
+      when /postgresql/i
+        `PGPASSWORD=#{config[:password]} pg_dump --host=#{config[:host]} --username=#{config[:username]} --schema-only --table=#{table_name} #{config[:database]}`
+      when /mysql/i
+        `mysqldump --host=#{config[:host]} --user=#{config[:username]} --password=#{config[:password]} --no-data --compact #{config[:database]} #{table_name}`
+      else
+        "DDL output is not yet supported for #{connection.adapter_name}!"
       end
     rescue => e
-      "Failed to generate DDL! #{e.message}"
+      "Failed to generate DDL string! #{e.message}"
     end
   end
 
   def probe_header
     puts Color.gray "".ljust(110, "=")
-    print Color.gray "#{connection.adapter_name} (#{connection.database_version}) - "
+    print connection.adapter_name
+    print Color.gray(" (#{connection.database_version}) - ")
     puts Color.green(table_name)
     puts Color.gray "".ljust(110, "=")
     puts
   end
 
   def probe_ddl(pad: 2)
-    reutrn unless ddl
+    return unless ddl
     lines = ddl.split("\n")
     lines.each do |line|
+      next if line.strip.blank?
+      next if line.strip.start_with?("--")
+      next if line.strip.start_with?("/*")
       print " ".ljust(pad)
       puts Color.gray(line)
     end
@@ -177,14 +176,15 @@ module ModelProbe
   def probe_column(column, name_pad:, type_pad:, sql_type_pad:)
     name = column.name
     if primary_key_column?(column)
-      print "*#{name}".rjust(name_pad)
+      print Color.magenta_light("*#{name}".rjust(name_pad))
     else
-      print Color.cyan(name.to_s.rjust(name_pad))
+      print Color.magenta(name.to_s.rjust(name_pad))
     end
     print " "
-    print Color.blue(column.type.to_s.ljust(type_pad, "."))
-    print Color.magenta(column.sql_type.to_s.ljust(sql_type_pad))
-    print Color.red("NULL ") if column.null
+    print column.type.to_s.ljust(type_pad, ".")
+    print Color.gray(column.sql_type.to_s.ljust(sql_type_pad))
+    print Color.red_light("NULLABLE ") if column.null
+    print Color.green_light("REQUIRED ") unless column.null
     print Color.gray("default=#{column.default} ") if column.default
     print "- #{Color.gray column.comment}" if column.comment
     puts
@@ -202,27 +202,23 @@ module ModelProbe
   end
 
   def probe_index(index, name_pad:)
-    print Color.yellow(index.name.to_s.rjust(name_pad))
+    print Color.yellow_light(index.name.to_s.rjust(name_pad))
     print Color.gray(" [")
     index.columns.each_with_index do |column, index|
       print Color.gray(", ") if index > 0
-      print Color.cyan(column)
+      print Color.magenta(column)
     end
     print Color.gray("]")
-    print Color.red(" UNIQUE") if index.unique
-    puts
+    print Color.green_light(" UNIQUE") if index.unique
 
     if index.where
-      print " ".ljust(name_pad + 1)
-      print Color.gray("where(#{index.where})")
-      puts
+      print Color.gray(" where(#{index.where})")
     end
 
     if index.using
-      print " ".ljust(name_pad + 1)
-      print Color.gray("using(#{index.using})")
-      puts
+      print Color.gray(" using(#{index.using})")
     end
+    puts
   end
 
   def probe_indexes
