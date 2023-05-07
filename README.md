@@ -59,8 +59,14 @@ _All this and more with ModelProbe!_
 
 ## Screenshots
 
+Introspect your ActiveRecord models to build a deep understanding of the underlying database structure.
+
 ![ModelProbe probe](https://ik.imagekit.io/hopsoft/mode_probe_probe_3ouJjft48.webp?updatedAt=1683465723169)
 
+Generate a well organized template for your ActiveRecord model's class definition.
+
 ![ModelProbe print_model](https://ik.imagekit.io/hopsoft/model_probe_print_model_sGOZWw-D5.webp?updatedAt=1683465723049)
+
+Create fixture stubs to use in the test suite.
 
 ![ModelProbe print_fixture](https://ik.imagekit.io/hopsoft/model_probe_print_fixture_ZZ2TavUO7.webp?updatedAt=1683465722977)
