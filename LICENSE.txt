@@ -1,4 +1,4 @@
-Copyright (c) 2012 Nathan Hopkins
+Copyright (c) 2023 Nathan Hopkins
 
 MIT License
 
