@@ -1,0 +1,4 @@
+<%= name.underscore %>_fixture:
+<% fixture_columns.each do |column| -%>
+  <%= column.name.underscore %>: <%= column&.default || column.type %>
+<% end -%>

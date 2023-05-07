@@ -1,17 +1,17 @@
-# -*- encoding: utf-8 -*-
-lib = File.expand_path("../lib", __FILE__)
-$LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
+# frozen_string_literal: true
+
 require "model_probe/version"
 
-Gem::Specification.new do |gem|
-  gem.name     = "model_probe"
-  gem.version  = ModelProbe::VERSION
-  gem.authors  = ["Nathan Hopkins"]
-  gem.email    = ["natehop@gmail.com"]
-  gem.summary  = "Schema introspection for ActiveModel"
-  gem.homepage = "http://hopsoft.github.com/model_probe/"
+Gem::Specification.new do |s|
+  s.name = "model_probe"
+  s.version = ModelProbe::VERSION
+  s.authors = ["Nathan Hopkins"]
+  s.email = ["natehop@gmail.com"]
+  s.summary = "ActiveRecord schema visualization and model organization made easy"
+  s.homepage = "http://hopsoft.github.com/model_probe/"
 
-  gem.files    = Dir["lib/**/*.rb", "lib/tasks/*.rake", "[A-Z]*"]
+  s.files = Dir["lib/**/*rb", "lib/tasks/*rake", "[A-Z]*"]
 
-  gem.add_development_dependency "rake"
+  s.add_development_dependency "magic_frozen_string_literal"
+  s.add_development_dependency "standardrb"
 end
