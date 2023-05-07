@@ -1,9 +1,9 @@
 # frozen_string_literal: true
 
 require "erb"
-require "model_probe/version"
-require "model_probe/color"
-require "model_probe/railtie" if defined?(Rails)
+require_relative "model_probe/version"
+require_relative "model_probe/color"
+require_relative "model_probe/railtie" if defined?(Rails)
 
 module ModelProbe
   include ModelProbe::Color
