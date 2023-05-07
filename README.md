@@ -2,11 +2,13 @@
 
 ## ActiveRecord schema visualization and model organization made easy 🙌
 
+Colorized table info for columns, types, nullables, indexes...
+and the actual DDL used by the database to create the table.
+_All this and more with ModelProbe!_
+
 1. Get a clear picture of your model's underlying schema with beautiful and informative schema introspection.
 1. Generate model class definitions with a well organized, logical structure.
 1. Create sensible text fixture stubs.
-
-_All this and more with ModelProbe!_
 
 <!-- Tocer[start]: Auto-generated, don't remove. -->
 
