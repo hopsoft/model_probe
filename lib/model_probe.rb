@@ -147,7 +147,7 @@ module ModelProbe
         "DDL output is not yet supported for #{connection.adapter_name}!"
       end
     rescue => e
-      "Failed to generate DDL string! #{e.message}"
+      Color.red "Failed to generate DDL string! #{e.message}"
     end
   end
 

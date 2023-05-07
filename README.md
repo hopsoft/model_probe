@@ -1,11 +1,22 @@
 # ModelProbe
 
-## ActiveRecord schema visualization and model organization made easy
+## ActiveRecord schema visualization and model organization made easy 🙌
 
 Get a clear picture of your model's underlying schema with our beautiful and informative schema introspection.
 Generate model class definitions with a well organized, logical structure.
 Also, create sensible text fixture stubs.
 _All this and more with ModelProbe._
+
+<!-- Tocer[start]: Auto-generated, don't remove. -->
+
+## Table of Contents
+
+  - [Quick Start](#quick-start)
+  - [Supported Databases](#supported-databases)
+  - [Videos](#videos)
+  - [Screenshots](#screenshots)
+
+<!-- Tocer[finish]: Auto-generated, don't remove. -->
 
 ## Quick Start
 
@@ -33,6 +44,19 @@ _All this and more with ModelProbe._
     bin/rails model_probe:print_fixture[User]
     ```
 
-## Screenshots
+## Supported Databases
+
+- MySQL
+- PostgreSQL
+- SQLite
+- _...more? contributions welcome ;)_
 
 ## Videos
+
+## Screenshots
+
+![ModelProbe probe](https://ik.imagekit.io/hopsoft/mode_probe_probe_3ouJjft48.webp?updatedAt=1683465723169)
+
+![ModelProbe print_model](https://ik.imagekit.io/hopsoft/model_probe_print_model_sGOZWw-D5.webp?updatedAt=1683465723049)
+
+![ModelProbe print_fixture](https://ik.imagekit.io/hopsoft/model_probe_print_fixture_ZZ2TavUO7.webp?updatedAt=1683465722977)
