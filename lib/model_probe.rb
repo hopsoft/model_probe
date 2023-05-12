@@ -112,6 +112,10 @@ module ModelProbe
     end
   end
 
+  def action_text_relations
+    name.constantize.rich_text_association_names
+  end
+
   def ddl
     config = connection_db_config.configuration_hash
     @ddl ||= begin

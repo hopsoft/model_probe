@@ -16,6 +16,11 @@ class <%= name -%> < <%= superclass_name %>
   <%= "belongs_to :#{column.name.sub(/_id\z/, "")}" %>
 <% end -%>
 
+  # Action text attributes ....................................................................................
+<% action_text_relations.each do |column| -%>
+  <%= "has_rich_text :#{column.name.sub(/_id\z/, "")}" %>
+<% end -%>
+
   # validations ..............................................................................................
 <% validation_columns.each do |column| -%>
   <%= "validates :#{column.name}, presence: true" unless column.null if required_columns.include?(column) %>
