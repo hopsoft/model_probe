@@ -119,7 +119,8 @@ module ModelProbe
       when /sqlite/i
         `sqlite3 #{config[:database]} '.schema #{table_name}'`
       when /postgresql/i
-        `PGPASSWORD=#{config[:password]} pg_dump --host=#{config[:host]} --username=#{config[:username]} --schema-only --table=#{table_name} #{config[:database]}`
+        port = connection_port_from config
+        `PGPASSWORD=#{config[:password]} pg_dump --host=#{config[:host]} --port=#{port} --username=#{config[:username]} --schema-only --table=#{table_name} #{config[:database]}`
       when /mysql/i
         `mysqldump --host=#{config[:host]} --user=#{config[:username]} --password=#{config[:password]} --no-data --compact #{config[:database]} #{table_name}`
       else
@@ -212,5 +213,12 @@ module ModelProbe
 
   def probe_footer
     puts Color.gray "".ljust(110, "=")
+  end
+
+  def connection_port_from(config)
+    return nil unless config.key?(:port)
+    return nil if config[:port].nil? || config[:port].empty?
+
+    config[:port]
   end
 end
