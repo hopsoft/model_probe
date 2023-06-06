@@ -12,6 +12,8 @@ Gem::Specification.new do |s|
 
   s.files = Dir["lib/**/*rb", "lib/tasks/*rake", "[A-Z]*"]
 
+  s.add_dependency "rainbow"
+
   s.add_development_dependency "magic_frozen_string_literal"
   s.add_development_dependency "standardrb"
 end
