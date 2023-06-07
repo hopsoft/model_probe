@@ -7,10 +7,9 @@ module ModelProbe::Probes::Indexes
     indexes.sort_by(&:name).each do |index|
       probe_index index, name_pad: name_pad
     end
-    puts
   end
 
-  protected
+  private
 
   def probe_index(index, name_pad:)
     print Rainbow(index.name.to_s.rjust(name_pad)).yellow
@@ -29,6 +28,5 @@ module ModelProbe::Probes::Indexes
     if index.using
       print Rainbow(" using(#{index.using})").dimgray
     end
-    puts
   end
 end

@@ -2,24 +2,27 @@
 
 module ModelProbe::Probes::Metadata
   def probe_metadata
-    puts Rainbow(name).green + Rainbow(" < #{superclass.name}").dimgray.faint
-    puts Rainbow("  Database Engine ".ljust(24, ".")).dimgray + " " + Rainbow(connection.adapter_name).skyblue.bright + " " + Rainbow(connection.database_version).skyblue.faint
-    puts Rainbow("  Database Name ".ljust(24, ".")).dimgray + " " + Rainbow(connection_db_config.database).skyblue
-    puts Rainbow("  Table Name ".ljust(24, ".")).dimgray + " " + Rainbow(table_name).skyblue
-    puts Rainbow("  Default Role".ljust(24, ".")).dimgray + " " + Rainbow(default_role).skyblue
-    puts Rainbow("  Connection Config ".ljust(24, ".")).dimgray
+    puts Rainbow(name).green + Rainbow(" < ").dimgray.faint + Rainbow(superclass.name).green.faint
+    puts Rainbow("  Database engine ".ljust(24, ".")).darkgray + " " + Rainbow(connection.adapter_name).skyblue.bright + " " + Rainbow(connection.database_version).skyblue.faint
+    puts Rainbow("  Database name ".ljust(24, ".")).darkgray + " " + Rainbow(connection_db_config.database).skyblue
+    puts Rainbow("  Table name ".ljust(24, ".")).darkgray + " " + Rainbow(table_name).skyblue
+    puts Rainbow("  Default role".ljust(24, ".")).darkgray + " " + Rainbow(default_role).skyblue
+    puts Rainbow("  Connection config ".ljust(24, ".")).darkgray
     connection_db_config.configuration_hash.to_yaml.split("\n")[1..].each { |line| puts "    " + Rainbow(line).skyblue.faint }
     puts
-    puts Rainbow("  DDL ".ljust(24, ".")).dimgray
-    ok = /create/i.match(ddl)
-    ddl.split("\n").each do |line|
-      next if line.strip.blank?
-      next if line.strip.start_with?("--")
-      next if line.strip.start_with?("/*")
-      print "    "
-      puts ok ? Rainbow(line).skyblue.faint : Rainbow(line).indianred.faint
+    puts Rainbow("  DDL ".ljust(24, ".")).darkgray
+    if /create table/i.match?(ddl)
+      ddl.split("\n").each do |line|
+        line = line.squish
+        next if line.blank?
+        next if line.start_with?("--")
+        next if line.start_with?("/*")
+        next if /error|warning|Couldn't execute/i.match?(line)
+        puts Rainbow("    #{line}").skyblue.faint
+      end
+    else
+      puts Rainbow("    Failed to generate DDL string! #{ddl}").indianred
     end
-    puts
   end
 
   private

@@ -14,13 +14,21 @@ module ModelProbe::Probes
   include Subclasses
 
   def probe
+    if name == "ActiveRecord::Base" || abstract_class?
+      probe_subclasses
+      return nil
+    end
+
     probe_metadata
+    puts
 
-    puts Rainbow("  Columns ".ljust(24, ".")).dimgray
+    puts Rainbow("  Columns ".ljust(24, ".")).darkgray
     probe_columns
+    puts
 
-    puts Rainbow("  Indexes ".ljust(24, ".")).dimgray
+    puts Rainbow("  Indexes ".ljust(24, ".")).darkgray
     probe_indexes
+    puts
 
     nil
   end
