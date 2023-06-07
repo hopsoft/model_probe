@@ -28,5 +28,6 @@ module ModelProbe::Probes::Indexes
     if index.using
       print Rainbow(" using(#{index.using})").dimgray
     end
+    puts
   end
 end
