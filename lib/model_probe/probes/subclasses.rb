@@ -2,6 +2,7 @@
 
 module ModelProbe::Probes::Subclasses
   def probe_subclasses
+    eager_load_rails!
     @count = 0
     @max_name_size = 0
     puts Rainbow(name).green + Rainbow(" < ").dimgray.faint + Rainbow(superclass.name).green.faint
@@ -42,6 +43,12 @@ module ModelProbe::Probes::Subclasses
   end
 
   private
+
+  def eager_load_rails!
+    return unless defined?(Rails)
+    return if Rails.application.config.eager_load
+    Rails.application.eager_load!
+  end
 
   def probe_subclass(name, path)
     path = path.split(/\/(?=app\/models\/)/i).last if path.include?("/app/models/") && !path.include?("/ruby/gems/")
