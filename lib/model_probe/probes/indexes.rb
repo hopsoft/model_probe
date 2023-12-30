@@ -3,8 +3,9 @@
 module ModelProbe::Probes::Indexes
   def probe_indexes
     indexes = connection.indexes(table_name)
-    return puts Rainbow("    N/A").skyblue.faint if indexes.none?
-    name_pad = indexes.map { |c| c.name.length }.max + 1
+    names = indexes.map(&:name).reject { |name| name.to_s.strip.empty? }
+    return puts Rainbow("    N/A").skyblue.faint if names.none?
+    name_pad = names.map(&:size).max + 1
     indexes.sort_by(&:name).each do |index|
       probe_index index, name_pad: name_pad
     end
