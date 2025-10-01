@@ -72,3 +72,19 @@ Generate a well organized template for your ActiveRecord model's class definitio
 Create fixture stubs to use in the test suite.
 
 ![ModelProbe print_fixture](https://ik.imagekit.io/hopsoft/model_probe_print_fixture_ZZ2TavUO7.webp?updatedAt=1683465722977)
+
+## Contributing
+
+### Tests
+
+Test can be ran using the default rake task or individually.
+
+```console
+ruby -Ilib test/model_probe_test.rb
+```
+
+Combine with a simple watch program for a simple test runner.
+
+```console
+fd --extension rb | entr -c rake
+```
