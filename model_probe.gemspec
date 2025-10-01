@@ -18,4 +18,6 @@ Gem::Specification.new do |s|
   s.add_development_dependency "standardrb"
   s.add_development_dependency "minitest-reporters"
   s.add_development_dependency "pry"
+  s.add_development_dependency "activerecord", "~> 7.1"
+  s.add_development_dependency "sqlite3"
 end
