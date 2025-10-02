@@ -39,16 +39,7 @@ module ModelProbe::Probes::Metadata
         "DDL output is not yet supported for #{connection.adapter_name}!"
       end
     rescue => e
-      case e.message
-      when /does not exist/
-        "The database #{config[:database]} does not exist"
-      when /not found/
-        "The binary was not found in the $PATH"
-      when /no such file or directory/i
-        "The binary could not be found at the specified path"
-      else
-        "Unexpected error: #{e.message}"
-      end
+      handle_ddl_error(e, config[:database])
     end
   end
 
@@ -60,5 +51,20 @@ module ModelProbe::Probes::Metadata
     end
 
     output
+  end
+
+  private
+
+  def handle_ddl_error(error, db_name)
+    case error.message
+    when /does not exist/
+      "The database #{db_name} does not exist"
+    when /not found/
+      "The binary was not found in the $PATH"
+    when /no such file or directory/i
+      "The binary could not be found at the specified path"
+    else
+      "Unexpected error: #{error.message}"
+    end
   end
 end
