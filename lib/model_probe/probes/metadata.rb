@@ -45,7 +45,7 @@ module ModelProbe::Probes::Metadata
       when /not found/
         "The binary was not found in the $PATH"
       else
-        e.message
+        "Unexpected error: #{e.message}"
       end
     end
   end

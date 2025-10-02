@@ -30,6 +30,16 @@ module ModelProbe
             end
           end
         end
+
+        def test_return_a_friendly_message_when_unexpected_error
+          custom_error_msg = "Command failed:"
+          subshell_error_msg = "Something weird happened"
+
+          DummyUser.stub(:run_command, ->(*) { raise "#{custom_error_msg} #{subshell_error_msg}" }) do
+            actual = DummyUser.ddl
+            assert_equal("Unexpected error: #{custom_error_msg} #{subshell_error_msg}", actual)
+          end
+        end
       end
 
       class RunCommandTest < Minitest::Test
