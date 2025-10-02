@@ -5,7 +5,7 @@ require_relative "../../test_helper"
 module ModelProbe
   module Probes
     module Metadata
-      class ModelProbeTest < Minitest::Test
+      class DDLTest < Minitest::Test
         def setup
           # Reset memoized var between test runs to avoid flaky tests
           DummyUser.instance_variable_set(:@ddl, nil)
@@ -31,7 +31,9 @@ module ModelProbe
             end
           end
         end
+      end
 
+      class RunCommandTest < Minitest::Test
         def test_returns_the_command_output
           actual = DummyUser.run_command("echo", "hello")
           assert_equal("hello\n", actual)
