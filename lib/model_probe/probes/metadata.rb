@@ -41,7 +41,7 @@ module ModelProbe::Probes::Metadata
     rescue => e
       case e.message
       when /does not exist/
-        "The database #{config[:database]} does not exist."
+        "The database #{config[:database]} does not exist"
       when /not found/
         "The binary was not found in the $PATH"
       else

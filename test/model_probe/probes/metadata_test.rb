@@ -16,7 +16,7 @@ module ModelProbe
 
           DummyUser.connection.stub(:adapter_name, "PostgreSQL") do
             actual = DummyUser.ddl
-            assert_match(/The database #{database} does not exist/, actual)
+            assert_equal("The database #{database} does not exist", actual)
           end
         end
 
@@ -27,7 +27,7 @@ module ModelProbe
           DummyUser.connection.stub(:adapter_name, "PostgreSQL") do
             DummyUser.stub(:run_command, ->(*) { raise "#{custom_error_msg} #{subshell_error_msg}" }) do
               actual = DummyUser.ddl
-              assert_match(/The binary was not found in the \$PATH/, actual)
+              assert_equal("The binary was not found in the $PATH", actual)
             end
           end
         end
