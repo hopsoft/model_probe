@@ -23,12 +23,12 @@ module ModelProbe
           custom_error_msg = "Command failed:"
           subshell_error_msg = "sh: 1: pg_dump: command not found"
 
-          DummyUser.connection.stub(:adapter_name, "PostgreSQL") do
-            DummyUser.stub(:run_command, ->(*) { raise "#{custom_error_msg} #{subshell_error_msg}" }) do
-              actual = DummyUser.ddl
-              assert_equal("The binary was not found in the $PATH", actual)
-            end
+          DummyUser.stub(:run_command, ->(*) { raise "#{custom_error_msg} #{subshell_error_msg}" }) do
+            actual = DummyUser.ddl
+            assert_equal("The binary was not found in the $PATH", actual)
+          end
         end
+
         def test_return_a_friendly_message_when_binary_is_missing_from_path
           custom_error_msg = "Command failed:"
           subshell_error_msg = "No such file or directory"
