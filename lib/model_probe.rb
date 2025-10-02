@@ -11,9 +11,13 @@ module ModelProbe
 
   # Prints a stub that can be used for a test fixture
   def print_fixture
-    template = erb_template("model_probe/templates/fixture.yml.erb")
-    puts template.result_with_hash(name: name, fixture_columns: fixture_columns)
+    puts generate_fixture
     nil
+  end
+
+  def generate_fixture
+    template = erb_template("model_probe/templates/fixture.yml.erb")
+    template.result_with_hash(name: name, fixture_columns: fixture_columns)
   end
 
   # Prints a new model definition based on the database schema
