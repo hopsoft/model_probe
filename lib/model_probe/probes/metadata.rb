@@ -25,23 +25,36 @@ module ModelProbe::Probes::Metadata
     end
   end
 
-  private
-
   def ddl
     config = connection_db_config.configuration_hash
     @ddl ||= begin
       case connection.adapter_name
       when /sqlite/i
-        `sqlite3 #{config[:database]} '.schema #{table_name}' 2>&1`
+        run_command("sqlite3", "#{config[:database]} '.schema #{table_name}'")
       when /postgresql/i
-        `PGPASSWORD=#{config[:password]} pg_dump --host=#{config[:host]} --port=#{config[:port]} --username=#{config[:username]} --schema-only --table=#{table_name} #{config[:database]} 2>&1`
+        run_command("PGPASSWORD=#{config[:password]} pg_dump", "--host=#{config[:host]} --port=#{config[:port]} --username=#{config[:username]} --schema-only --table=#{table_name} #{config[:database]}")
       when /mysql/i
-        `mysqldump --host=#{config[:host]} --port=#{config[:port]} --user=#{config[:username]} --password=#{config[:password]} --skip-lock-tables --no-data --compact #{config[:database]} #{table_name} 2>&1`
+        run_command("mysqldump", "--host=#{config[:host]} --port=#{config[:port]} --user=#{config[:username]} --password=#{config[:password]} --skip-lock-tables --no-data --compact #{config[:database]} #{table_name}")
       else
         "DDL output is not yet supported for #{connection.adapter_name}!"
       end
     rescue => e
-      "Failed to generate DDL string! #{e.message}"
+      case e.message
+      when /does not exist/
+        "The database #{config[:database]} does not exist."
+      else
+        e.message
+      end
     end
+  end
+
+  def run_command(binary, full_command)
+    output = %x{#{binary} #{full_command} 2>&1}
+
+    unless $?.success?
+      raise RuntimeError, "The command returned non-zero exit status: #{output}"
+    end
+
+    output
   end
 end
