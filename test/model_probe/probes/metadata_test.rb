@@ -56,7 +56,7 @@ module ModelProbe
           assert_equal("hello\n", actual)
         end
 
-        def test_raises_a_runtime_error_when_command_does_not_found
+        def test_raises_a_runtime_error_when_command_is_not_found
           assert_raises(RuntimeError) { DummyUser.run_command("fake_cmd", nil) }
         end
 
