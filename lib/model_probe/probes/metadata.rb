@@ -54,7 +54,7 @@ module ModelProbe::Probes::Metadata
     output = `#{binary} #{full_command} 2>&1`
 
     unless $?.success?
-      raise "The command returned non-zero exit status: #{output}"
+      raise "Command failed: #{output.strip}"
     end
 
     output

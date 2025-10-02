@@ -20,7 +20,7 @@ module ModelProbe
         end
 
         def test_return_a_friendly_message_when_command_is_not_found
-          custom_error_msg = "The command returned non-zero exit status:"
+          custom_error_msg = "Command failed:"
           subshell_error_msg = "sh: 1: pg_dump: command not found"
 
           DummyUser.connection.stub(:adapter_name, "PostgreSQL") do
@@ -43,7 +43,7 @@ module ModelProbe
         end
 
         def test_returns_a_custom_error_message_with_command_error
-          custom_error_msg = "The command returned non-zero exit status:"
+          custom_error_msg = "Command failed:"
 
           error = assert_raises(RuntimeError) { DummyUser.run_command("fake_cmd", nil) }
           assert_match(/^#{custom_error_msg}.*?not found/, error.message)
