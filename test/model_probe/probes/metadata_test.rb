@@ -9,12 +9,24 @@ module ModelProbe
           DummyUser.instance_variable_set(:@ddl, nil)
         end
 
-        def test_rescues_from_a_command_error
+        def test_return_a_friendly_message_when_database_does_not_exist
           database = DummyUser.connection_db_config.database
 
           DummyUser.connection.stub(:adapter_name, "PostgreSQL") do
             actual = DummyUser.ddl
             assert_match(/The database #{database} does not exist/, actual)
+          end
+        end
+
+        def test_return_a_friendly_message_when_command_is_not_found
+          custom_error_msg = "The command returned non-zero exit status:"
+          subshell_error_msg = "sh: 1: pg_dump: command not found"
+
+          DummyUser.connection.stub(:adapter_name, "PostgreSQL") do
+            DummyUser.stub(:run_command, ->(*) { raise RuntimeError, "#{custom_error_msg} #{subshell_error_msg}" }) do
+              actual = DummyUser.ddl
+              assert_match(/The binary was not found in the \$PATH/, actual)
+            end
           end
         end
 
