@@ -44,6 +44,8 @@ module ModelProbe::Probes::Metadata
         "The database #{config[:database]} does not exist"
       when /not found/
         "The binary was not found in the $PATH"
+      when /no such file or directory/i
+        "The binary could not be found at the specified path"
       else
         "Unexpected error: #{e.message}"
       end

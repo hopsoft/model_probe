@@ -28,6 +28,14 @@ module ModelProbe
               actual = DummyUser.ddl
               assert_equal("The binary was not found in the $PATH", actual)
             end
+        end
+        def test_return_a_friendly_message_when_binary_is_missing_from_path
+          custom_error_msg = "Command failed:"
+          subshell_error_msg = "No such file or directory"
+
+          DummyUser.stub(:run_command, ->(*) { raise "#{custom_error_msg} #{subshell_error_msg}" }) do
+            actual = DummyUser.ddl
+            assert_equal("The binary could not be found at the specified path", actual)
           end
         end
 
