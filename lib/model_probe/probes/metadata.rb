@@ -51,10 +51,10 @@ module ModelProbe::Probes::Metadata
   end
 
   def run_command(binary, full_command)
-    output = %x{#{binary} #{full_command} 2>&1}
+    output = `#{binary} #{full_command} 2>&1`
 
     unless $?.success?
-      raise RuntimeError, "The command returned non-zero exit status: #{output}"
+      raise "The command returned non-zero exit status: #{output}"
     end
 
     output

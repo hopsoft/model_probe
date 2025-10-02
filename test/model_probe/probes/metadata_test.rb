@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require_relative "../../test_helper"
 
 module ModelProbe
@@ -23,7 +25,7 @@ module ModelProbe
           subshell_error_msg = "sh: 1: pg_dump: command not found"
 
           DummyUser.connection.stub(:adapter_name, "PostgreSQL") do
-            DummyUser.stub(:run_command, ->(*) { raise RuntimeError, "#{custom_error_msg} #{subshell_error_msg}" }) do
+            DummyUser.stub(:run_command, ->(*) { raise "#{custom_error_msg} #{subshell_error_msg}" }) do
               actual = DummyUser.ddl
               assert_match(/The binary was not found in the \$PATH/, actual)
             end
