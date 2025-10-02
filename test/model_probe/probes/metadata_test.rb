@@ -7,8 +7,7 @@ module ModelProbe
     module Metadata
       class DDLTest < Minitest::Test
         def setup
-          # Reset memoized var between test runs to avoid flaky tests
-          DummyUser.instance_variable_set(:@ddl, nil)
+          reset_dummy_user_dll
         end
 
         def test_return_a_friendly_message_when_database_does_not_exist
