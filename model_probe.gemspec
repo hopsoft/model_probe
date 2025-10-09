@@ -14,10 +14,11 @@ Gem::Specification.new do |s|
 
   s.add_dependency "rainbow"
 
+  s.add_development_dependency "activerecord", ">= 7.1"
   s.add_development_dependency "magic_frozen_string_literal"
-  s.add_development_dependency "standardrb"
   s.add_development_dependency "minitest-reporters"
   s.add_development_dependency "pry"
-  s.add_development_dependency "activerecord", ">= 7.1"
+  s.add_development_dependency "rake"
   s.add_development_dependency "sqlite3"
+  s.add_development_dependency "standardrb"
 end
