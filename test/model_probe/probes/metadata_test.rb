@@ -12,8 +12,10 @@ module ModelProbe
 
         def test_return_a_friendly_message_when_database_does_not_exist
           database = DummyUser.connection_db_config.database
+          custom_error_msg = "Command failed:"
+          subshell_error_msg = "database \"#{database}\" does not exist"
 
-          DummyUser.connection.stub(:adapter_name, "PostgreSQL") do
+          DummyUser.stub(:run_command, ->(*) { raise "#{custom_error_msg} #{subshell_error_msg}" }) do
             actual = DummyUser.ddl
             assert_equal("The database #{database} does not exist", actual)
           end
