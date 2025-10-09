@@ -1,3 +1,6 @@
+[![CI](https://github.com/hopsoft/model_probe/actions/workflows/tests.yml/badge.svg)](https://github.com/hopsoft/model_probe/actions/workflows/tests.yml)
+[![Lines of Code](https://img.shields.io/badge/loc-359-47d299.svg)](http://blog.codinghorror.com/the-best-code-is-no-code-at-all/)
+
 # ModelProbe
 
 ## ActiveRecord schema visualization and model organization made easy 🙌
@@ -14,10 +17,10 @@ _All this and more with ModelProbe!_
 
 ## Table of Contents
 
-  - [Quick Start](#quick-start)
-  - [Supported Databases](#supported-databases)
-  - [Videos](#videos)
-  - [Screenshots](#screenshots)
+- [Quick Start](#quick-start)
+- [Supported Databases](#supported-databases)
+- [Videos](#videos)
+- [Screenshots](#screenshots)
 
 <!-- Tocer[finish]: Auto-generated, don't remove. -->
 
@@ -25,28 +28,29 @@ _All this and more with ModelProbe!_
 
 1. Add the GEM to your project
 
-    ```sh
-    bundle add model_probe
-    ```
+   ```sh
+   bundle add model_probe
+   ```
 
    _ModelProbe auto initializes in the Rails `development` environment._
 
 1. Use in a Rails console
 
-    ```ruby
-    # examples for a User model
-    User.probe
-    User.print_model
-    User.print_fixture
-    ```
+   ```ruby
+   # examples for a User model
+   User.probe
+   User.print_model
+   User.print_fixture
+   ```
+
 1. Use with Rails (Rake) tasks
 
-    ```sh
-    # examples for a User model
-    bin/rails model_probe:probe[User]
-    bin/rails model_probe:print_model[User]
-    bin/rails model_probe:print_fixture[User]
-    ```
+   ```sh
+   # examples for a User model
+   bin/rails model_probe:probe[User]
+   bin/rails model_probe:print_model[User]
+   bin/rails model_probe:print_fixture[User]
+   ```
 
 ## Supported Databases
 
