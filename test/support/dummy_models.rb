@@ -24,3 +24,8 @@ end
 class DummyUser < ActiveRecord::Base
   extend ModelProbe
 end
+
+# Reset memoized ivar between test runs to avoid flaky tests
+def reset_dummy_user_dll
+  DummyUser.instance_variable_set(:@ddl, nil)
+end
