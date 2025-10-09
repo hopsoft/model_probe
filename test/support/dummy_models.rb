@@ -68,7 +68,7 @@ if ENV["MYSQL_HOST"]
       self.table_name = "dummy_users"
       establish_connection(
         adapter: "mysql2",
-        host: ENV["MYSQL_HOST"],
+        host: ENV["MYSQL_HOST"] == "localhost" ? "127.0.0.1" : ENV["MYSQL_HOST"],
         port: ENV["MYSQL_PORT"],
         username: ENV["MYSQL_USER"],
         password: ENV["MYSQL_PASSWORD"],
