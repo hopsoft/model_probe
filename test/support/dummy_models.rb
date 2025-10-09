@@ -11,8 +11,13 @@ ActiveRecord::Schema.define do
   create_table :dummy_users, force: true do |t|
     t.string :name
     t.string :email
+    t.string :address_city
     t.timestamps
+
+    t.index :name
   end
+
+  add_index :dummy_users, :email, unique: true
 end
 
 # Define test model with ModelProbe behavior
